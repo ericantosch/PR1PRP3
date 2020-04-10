@@ -8,16 +8,27 @@ Die Genauigkeit und die reelle Zahl müssen vom Nutzer eingeben werden.
 //Includes
 #include<stdio.h>
 
+double floatPointCalc(int i) {
+	double result = 1;
+	for (int t = 0; t < i; t++) {
+		result *= 0.1;
+	}
+	return result;
+}
+
 double square(double radical, int i) { // Call-By-Value
-	int n = 0; // Deklaration der Variablen für das Abbrechen der Schleife und des Ergebnisses
+	double previousN = 0;	// Deklaration der Variablen für das Abbrechen der Schleife und des Ergebnisses
 	double x_n = 1; 
-	do {
+	double diff = floatPointCalc(i);
+	int n = 0;
+	while (1 == 1) {
+		previousN = x_n;
 		x_n = 0.5 * (x_n + (radical / x_n)); // Formel aus der Aufgabe
+		if (n >= i && (x_n - previousN) < diff) { //Abbruchbedingung
+			break;
+		}
 		n++;
-
-
-	} while (n < i); // Abbruchbedingung
-
+	}
 	return x_n;
 }
 
