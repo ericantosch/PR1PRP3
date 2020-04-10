@@ -1,8 +1,16 @@
+/*
+Programmieren 1 - Praktikum 3
+Aufgabe 3.2a-c
+Autoren: Florian Tietjen und Eric Antosch
+Beschreibung: Dieses Programm berechnet über die Expotentialreihe den Wert der Zahl e bis die Funktion nach 10 Summanden abbricht.
+Der Unterschied zwischen dem Ergebnis und der Zahl e aus der math.h-Funktion exp(x) wird dann dazu noch ausgegeben.
+*/
+//Includes
 #include<stdio.h>
 #include<math.h>
 
 
-
+//Diese Funktion berechnet den Wert der Zahl e über die Expotentialreihe
 double eulNum(double euler) {
 	double result = 1;
 	double fac = 1;
@@ -10,14 +18,15 @@ double eulNum(double euler) {
 	double resultEuler = 1;
 	for (int i = 1; i < 10; i++)
 	{	
-			fac *= i;
-			euler_x *= euler;
-			resultEuler = euler_x/fac;
+			fac *= i; // Berechnet die entsprechende Zahl für k! aus der Formel
+			euler_x *= euler; // euler_x entspricht der Zahl x^k
+			resultEuler = euler_x/fac; // Fügt die Berechnung über einen Bruch zusammen
 		
-		result += resultEuler;
+		result += resultEuler; // Addiert das Ergebnis auf
 	}
 	return result;
 }
+//Berechnet die Differenz in Prozent
 double diff(double euler) {
 
 	double difference = exp(euler) - eulNum(euler);
@@ -27,18 +36,20 @@ double diff(double euler) {
 int main(void) {
 
 	double euler;
-	do {
+	do {//Schleife um mehrere Zahl e^x mit x = euler zu berechnen
 		printf("Geben Sie bitte eine Zahl ein, von der der Expotentialwert bestimmt werden soll!\n");
 		scanf_s("%lf", &euler);
 		if (euler != 0) {
+			// Aufrufe der Funktionen von oben
 			printf("%lf\n", eulNum(euler));
 			printf("Der Unterschied zwischen der richtigen und der errechneten Zahl betr%cgt %lf%%\n", 132, diff(euler));
 			printf("Um das Programm zu beenden, geben Sie bitte eine %d ein.\n", 0);
 		}
 		else
 		{
-			break;
+			break;// Bricht die Schleife im Fall von x = 0 ab.
 		}
-	} while (1 == 1);
+	} while (1 == 1); //= While(true)
+	getch();
 	return 0;
 }

@@ -5,7 +5,7 @@ Autoren: Florian Tietjen und Eric Antosch
 Beschreibung: Dieses Programm approximiert den Wert einer Wurzel einer reellen Zahl durch eine Folge.
 Die Genauigkeit und die reelle Zahl müssen vom Nutzer eingeben werden.
 */
-
+//Includes
 #include<stdio.h>
 
 double square(double radical, int i) { // Call-By-Value
@@ -32,6 +32,7 @@ int main(void) {
 	printf("Bitte Anzahl der g%cltigen Stellen hinter dem Komma eingeben!\n", 129);
 	scanf_s("%d", &i);
 	printf("%.*lf", i, square(rad, i)); //Aufruf der Funktion square. %.*lf bestimmt durch die Variable i die Menge an Nachkommastellen und damit die Genauigkeit  
-		return 0;
+	getch();
+	return 0;
 
 }
